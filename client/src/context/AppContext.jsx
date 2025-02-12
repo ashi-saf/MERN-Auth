@@ -3,7 +3,7 @@ import { createContext, useState } from 'react';
 const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const backendUrl = 'https://mern-auth-backend-wt92.onrender.com';
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const ctxValue = {
