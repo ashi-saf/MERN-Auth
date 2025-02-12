@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 //cors configuration
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = ['https://mern-auth-frontend-pou7.onrender.com'];
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 
 //routes
