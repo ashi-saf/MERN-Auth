@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+
+import AppContext from '../context/AppContext';
 
 const UserDetails = () => {
-  const navigate = useNavigate();
+  const { backendUrl } = useContext(AppContext);
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const { data } = await axios.get('http://localhost:3000/api/user');
+        const { data } = await axios.get(backendUrl + '/api/user');
 
         data.success ? setUserData(data.users) : toast.error(data.message);
       } catch (error) {
