@@ -25,7 +25,7 @@ const UserDetails = () => {
     if (!window.confirm('Are you sure you want to delete this user?')) return;
 
     try {
-      await axios.delete(`http://localhost:3000/api/user/${id}`);
+      await axios.delete(backendUrl + `/api/user/${id}`);
       setUserData(userData.filter((user) => user._id !== id));
       toast.success('User deleted successfully!');
     } catch (error) {
