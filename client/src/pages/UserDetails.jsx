@@ -7,6 +7,7 @@ import AppContext from '../context/AppContext';
 const UserDetails = () => {
   const { backendUrl } = useContext(AppContext);
   const [userData, setUserData] = useState([]);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     const getUserData = async () => {
@@ -27,7 +28,9 @@ const UserDetails = () => {
     try {
       await axios.delete(backendUrl + `/api/user/${id}`);
       setUserData(userData.filter((user) => user._id !== id));
+      setIsDeleting(true);
       toast.success('User deleted successfully!');
+      setIsDeleting(false);
     } catch (error) {
       toast.error(error.message);
     }
@@ -64,7 +67,7 @@ const UserDetails = () => {
                       onClick={() => handleDelete(data._id)}
                       className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
                     >
-                      Delete
+                      {isDeleting ? 'Deleting...' : 'Delete'}
                     </button>
                   </td>
                 </tr>
